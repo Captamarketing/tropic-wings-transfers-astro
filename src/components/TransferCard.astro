@@ -1,0 +1,121 @@
+---
+export interface Props {
+  departTime: string;
+  arriveTime: string;
+  departStop: string;
+  arriveStop: string;
+  duration: string;
+  stops: string;          // "Non-stop" | "1 Stop (Palm Cove)"
+  price: string;          // e.g. "$XX"
+  badge?: string;         // e.g. "Best Value" | "Popular"
+  badgeStyle?: 'lime' | 'primary';
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
+const {
+  departTime,
+  arriveTime,
+  departStop,
+  arriveStop,
+  duration,
+  stops,
+  price,
+  badge,
+  badgeStyle = 'lime',
+  imageSrc,
+  imageAlt = 'Tropic Wings coach transfer',
+} = Astro.props;
+
+const hasStop = stops !== 'Non-stop';
+const badgeClass = badgeStyle === 'lime'
+  ? 'bg-secondary-fixed text-on-secondary-fixed'
+  : 'bg-primary text-on-primary';
+---
+
+<div class="bg-surface-container-lowest rounded-xl flex flex-col md:flex-row overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+
+  <!-- Image -->
+  <div class="w-full md:w-56 relative shrink-0 min-h-[180px]">
+    {imageSrc ? (
+      <img
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 absolute inset-0"
+        src={imageSrc}
+        alt={imageAlt}
+      />
+    ) : (
+      <div class="absolute inset-0 action-pill-gradient opacity-80"></div>
+    )}
+    {badge && (
+      <div class="absolute top-3 left-3">
+        <span class={`${badgeClass} text-[10px] font-black px-2 py-1 rounded uppercase tracking-wider font-label`}>
+          {badge}
+        </span>
+      </div>
+    )}
+  </div>
+
+  <!-- Content -->
+  <div class="flex-1 p-7">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+
+      <!-- Times -->
+      <div class="flex items-center gap-8">
+        <div class="text-center">
+          <p class="text-2xl font-black font-headline text-on-surface">{departTime}</p>
+          <p class="text-xs font-bold text-outline uppercase font-label">{departStop}</p>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <p class="text-[10px] font-bold text-primary mb-1 font-label">{duration}</p>
+          <div class="w-20 h-[2px] bg-outline-variant relative">
+            <div class="absolute -top-1 -left-1 w-2 h-2 rounded-full bg-primary"></div>
+            <div class="absolute -top-1 -right-1 w-2 h-2 rounded-full border-2 border-primary bg-white"></div>
+            {hasStop && (
+              <div class="absolute left-1/2 -translate-x-1/2 -top-1 w-2 h-2 rounded-full bg-secondary"></div>
+            )}
+          </div>
+          <p class="text-[10px] font-bold text-outline mt-1 font-label">{stops}</p>
+        </div>
+
+        <div class="text-center">
+          <p class="text-2xl font-black font-headline text-on-surface">{arriveTime}</p>
+          <p class="text-xs font-bold text-outline uppercase font-label">{arriveStop}</p>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="text-right">
+        <p class="text-xs font-bold text-outline mb-1 font-label">From</p>
+        <p class="text-3xl font-headline font-extrabold text-primary">
+          {price}<span class="text-sm font-medium text-outline"> AUD</span>
+        </p>
+        <p class="text-xs text-on-surface-variant font-label">per adult</p>
+      </div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="flex items-center justify-between pt-5 border-t border-surface-container-high">
+      <div class="flex gap-4 flex-wrap">
+        <div class="flex items-center gap-1 text-on-surface-variant">
+          <span class="material-symbols-outlined text-sm">ac_unit</span>
+          <span class="text-xs font-medium font-label">Air Con</span>
+        </div>
+        <div class="flex items-center gap-1 text-on-surface-variant">
+          <span class="material-symbols-outlined text-sm">luggage</span>
+          <span class="text-xs font-medium font-label">Luggage Included</span>
+        </div>
+        <div class="flex items-center gap-1 text-on-surface-variant">
+          <span class="material-symbols-outlined text-sm">eco</span>
+          <span class="text-xs font-medium font-label">Eco-Certified</span>
+        </div>
+      </div>
+      <a
+        href="/booking"
+        class="px-8 py-3 bg-primary text-on-primary font-bold rounded-full hover:shadow-xl transition-all active:scale-95 font-headline text-sm"
+      >
+        Select Seat
+      </a>
+    </div>
+  </div>
+</div>

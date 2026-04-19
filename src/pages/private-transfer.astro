@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = [
+  {
+    "@type": "Service",
+    "name": "Private Exclusive Transfer — Cairns Airport to Port Douglas",
+    "description": "Private door-to-door transfer between Cairns Airport (CNS) and Port Douglas in a fully electric VW ID Buzz. Exclusive to your group, no other passengers, approximately 70 minutes direct.",
+    "provider": { "@type": "TransportationCompany", "name": "Tropic Wings Transfers", "url": "https://transfers.tropicwings.com.au" },
+    "serviceType": "Private Airport Transfer",
+    "areaServed": { "@type": "Place", "name": "Cairns to Port Douglas Corridor, Queensland, Australia" },
+    "offers": { "@type": "Offer", "priceCurrency": "AUD", "availability": "https://schema.org/InStock", "url": "https://transfers.tropicwings.com.au/private-transfer" },
+    "additionalProperty": [
+      { "@type": "PropertyValue", "name": "Vehicle", "value": "VW ID Buzz (Fully Electric)" },
+      { "@type": "PropertyValue", "name": "Route", "value": "Cairns Airport (CNS) to Port Douglas, Queensland" },
+      { "@type": "PropertyValue", "name": "Distance", "value": "Approximately 70km" },
+      { "@type": "PropertyValue", "name": "Duration", "value": "Approximately 70 minutes" }
+    ]
+  },
+  {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Tropic Wings Transfers", "item": "https://transfers.tropicwings.com.au" },
+      { "@type": "ListItem", "position": 2, "name": "Private Transfer", "item": "https://transfers.tropicwings.com.au/private-transfer" }
+    ]
+  },
+  {
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What vehicle is used for the private transfer from Cairns Airport to Port Douglas?", "acceptedAnswer": { "@type": "Answer", "text": "Tropic Wings uses a fully electric VW ID Buzz for all private exclusive transfers between Cairns Airport and Port Douglas." } },
+      { "@type": "Question", "name": "Is the private transfer from Cairns Airport to Port Douglas direct?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — private transfers travel directly from Cairns Airport to your Port Douglas accommodation with no intermediate stops and no other passengers." } },
+      { "@type": "Question", "name": "How long does the private transfer from Cairns to Port Douglas take?", "acceptedAnswer": { "@type": "Answer", "text": "The direct private transfer from Cairns Airport to Port Douglas takes approximately 70 minutes via the Captain Cook Highway — a scenic coastal route of approximately 70km." } }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title="Private Transfer — Cairns Airport to Port Douglas | Tropic Wings"
+  description="Private exclusive transfers between Cairns Airport and Port Douglas in a fully electric VW ID Buzz. Just your group, no stops, door-to-door. Operated by Tropic Wings — est. 1981."
+  canonical="/private-transfer"
+  schema={schema}
+>
+
+  <!-- HERO -->
+  <header class="relative w-full min-h-[600px] flex items-end overflow-hidden bg-on-surface">
+    <div class="absolute inset-0">
+      <img class="w-full h-full object-cover opacity-70"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/2023_Volkswagen_ID.Buzz_LWB_front_8.11.22.jpg/1280px-2023_Volkswagen_ID.Buzz_LWB_front_8.11.22.jpg"
+        alt="VW ID Buzz fully electric vehicle — Tropic Wings private transfer from Cairns Airport to Port Douglas"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-8 pb-16 w-full">
+      <nav class="text-white/60 text-xs font-label mb-6 flex items-center gap-2">
+        <a href="/" class="hover:text-secondary-fixed transition-colors">Tropic Wings Transfers</a>
+        <span class="material-symbols-outlined text-sm">chevron_right</span>
+        <span class="text-white">Private Transfer</span>
+      </nav>
+      <span class="inline-block bg-secondary-fixed text-on-secondary-fixed text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-widest font-label mb-4">Exclusive · Electric · Zero Emissions</span>
+      <h1 class="text-5xl md:text-7xl font-headline font-extrabold text-white leading-tight tracking-tighter mb-4">
+        Private Transfer<br/><span class="text-white/70 text-4xl md:text-5xl">Cairns Airport to Port Douglas</span>
+      </h1>
+      <p class="text-white/75 font-body text-lg max-w-xl mb-8">Just your group. Fully electric VW ID Buzz. No other passengers, no stops — directly from arrivals to your accommodation door.</p>
+      <a href="/booking?type=private" class="inline-flex items-center gap-3 action-pill-gradient text-on-primary px-10 py-4 rounded-full font-headline font-bold text-lg shadow-xl hover:scale-[1.02] transition-transform">
+        Book Private Transfer — From $XXX <span class="material-symbols-outlined">arrow_forward</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- THE VEHICLE -->
+  <section class="max-w-7xl mx-auto px-8 py-24">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div>
+        <span class="text-primary font-headline font-extrabold uppercase tracking-widest text-sm mb-4 block">The Vehicle</span>
+        <h2 class="text-4xl md:text-5xl font-headline font-black tracking-tighter text-on-surface mb-6">The VW ID Buzz.</h2>
+        <p class="text-on-surface-variant font-body text-lg leading-relaxed mb-8">Bold, fully electric, and designed with a nod to the iconic original Kombi — the VW ID Buzz turns heads on the Captain Cook Highway while producing zero tailpipe emissions. As part of Tropic Wings' commitment to sustainable tourism, your private transfer leaves the Great Barrier Reef and Daintree region exactly as you found it.</p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-surface-container-low rounded-xl p-5">
+            <span class="material-symbols-outlined text-primary text-2xl mb-2 block" style="font-variation-settings:'FILL' 1;">electric_bolt</span>
+            <h3 class="font-headline font-bold text-sm mb-1">Fully Electric</h3>
+            <p class="text-on-surface-variant text-xs font-body">Zero tailpipe emissions</p>
+          </div>
+          <div class="bg-surface-container-low rounded-xl p-5">
+            <span class="material-symbols-outlined text-primary text-2xl mb-2 block">group</span>
+            <h3 class="font-headline font-bold text-sm mb-1">Up to 7 Passengers</h3>
+            <p class="text-on-surface-variant text-xs font-body">Generous seating and luggage space</p>
+          </div>
+          <div class="bg-surface-container-low rounded-xl p-5">
+            <span class="material-symbols-outlined text-primary text-2xl mb-2 block">volume_off</span>
+            <h3 class="font-headline font-bold text-sm mb-1">Whisper Quiet</h3>
+            <p class="text-on-surface-variant text-xs font-body">Smooth, silent electric drive</p>
+          </div>
+          <div class="bg-surface-container-low rounded-xl p-5">
+            <span class="material-symbols-outlined text-primary text-2xl mb-2 block">usb</span>
+            <h3 class="font-headline font-bold text-sm mb-1">USB Charging</h3>
+            <p class="text-on-surface-variant text-xs font-body">Stay charged on the journey</p>
+          </div>
+        </div>
+      </div>
+      <div class="relative">
+        <img class="rounded-xl shadow-2xl w-full object-cover h-[480px]"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/2023_Volkswagen_ID.Buzz_LWB_front_8.11.22.jpg/1280px-2023_Volkswagen_ID.Buzz_LWB_front_8.11.22.jpg"
+          alt="Fully electric VW ID Buzz — Tropic Wings private transfer vehicle, Cairns Airport to Port Douglas"
+        />
+        <div class="absolute -bottom-6 -left-6 bg-primary text-on-primary p-6 rounded-xl shadow-lg max-w-[200px]">
+          <p class="font-label text-xs uppercase tracking-wider mb-1 text-white/70">Route distance</p>
+          <p class="font-headline font-black text-3xl">~70km</p>
+          <p class="font-label text-xs mt-1 text-white/70">Cairns Airport → Port Douglas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="bg-surface-container-low py-24">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="text-center mb-16">
+        <span class="text-primary font-headline font-extrabold uppercase tracking-widest text-sm mb-4 block">Who It's For</span>
+        <h2 class="text-4xl font-headline font-black tracking-tighter text-on-surface">The private transfer is perfect for…</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-surface-container-lowest rounded-xl p-8">
+          <span class="material-symbols-outlined text-primary text-4xl mb-4 block" style="font-variation-settings:'FILL' 1;">favorite</span>
+          <h3 class="font-headline font-bold text-lg mb-3">Couples &amp; Honeymooners</h3>
+          <p class="text-on-surface-variant font-body text-sm leading-relaxed">Arrive together in something a little special. The ID Buzz makes an impression before you've even checked in.</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl p-8">
+          <span class="material-symbols-outlined text-primary text-4xl mb-4 block" style="font-variation-settings:'FILL' 1;">family_restroom</span>
+          <h3 class="font-headline font-bold text-lg mb-3">Families</h3>
+          <p class="text-on-surface-variant font-body text-sm leading-relaxed">Everyone in together, luggage loaded, straight to your Port Douglas resort.</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl p-8">
+          <span class="material-symbols-outlined text-primary text-4xl mb-4 block" style="font-variation-settings:'FILL' 1;">groups</span>
+          <h3 class="font-headline font-bold text-lg mb-3">Small Groups</h3>
+          <p class="text-on-surface-variant font-body text-sm leading-relaxed">Split the cost — a private transfer often works out comparable to individual coach fares.</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl p-8">
+          <span class="material-symbols-outlined text-primary text-4xl mb-4 block" style="font-variation-settings:'FILL' 1;">work</span>
+          <h3 class="font-headline font-bold text-lg mb-3">Business Travellers</h3>
+          <p class="text-on-surface-variant font-body text-sm leading-relaxed">Quiet, private, direct. Make calls, decompress, or prepare without sharing a coach with strangers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING CTA -->
+  <section class="bg-primary py-24 px-8 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute -right-20 top-0 w-96 h-96 rounded-full bg-secondary-fixed"></div>
+    </div>
+    <div class="relative max-w-3xl mx-auto text-center">
+      <h2 class="text-4xl font-headline font-black tracking-tighter text-white mb-4">Pricing</h2>
+      <p class="text-white/70 font-body mb-12">Priced per vehicle — not per person. The more people, the better the value.</p>
+      <div class="bg-white/10 border border-white/20 rounded-xl p-10 mb-8">
+        <p class="text-white/60 text-xs font-label uppercase tracking-widest mb-4">VW ID Buzz (up to 7 passengers)</p>
+        <p class="text-white font-headline font-black text-6xl mb-2">$XXX <span class="text-3xl font-medium text-white/60">AUD</span></p>
+        <p class="text-white/60 text-sm font-label">Per vehicle, one way — door-to-door, Cairns Airport to Port Douglas</p>
+      </div>
+      <p class="text-white/60 text-sm font-body mb-8">Includes: airport meet &amp; greet, all luggage, direct route, fully electric vehicle</p>
+      <a href="/booking?type=private" class="inline-flex items-center gap-3 bg-secondary-fixed text-on-secondary-fixed px-12 py-5 rounded-full font-headline font-bold text-lg hover:scale-[1.02] transition-transform shadow-xl">
+        Reserve Your Private Transfer <span class="material-symbols-outlined">arrow_forward</span>
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
