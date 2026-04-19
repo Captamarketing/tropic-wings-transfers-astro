@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact Us | Tropic Wings Transfers"
+  description="Contact Tropic Wings Transfers — Cairns Airport to Port Douglas. Call, email, or use our contact form for bookings, enquiries, and changes."
+  canonical="/contact"
+>
+  <div class="max-w-4xl mx-auto px-8 py-16">
+    <nav class="text-on-surface-variant text-xs font-label mb-8 flex items-center gap-2">
+      <a href="/" class="hover:text-primary transition-colors">Tropic Wings Transfers</a>
+      <span class="material-symbols-outlined text-sm">chevron_right</span>
+      <span>Contact</span>
+    </nav>
+
+    <h1 class="text-4xl font-headline font-black tracking-tighter text-on-surface mb-4">Get in Touch</h1>
+    <p class="text-on-surface-variant font-body text-lg mb-12">Questions about your booking? Need to make a change? We're here to help.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+      <!-- Contact details -->
+      <div class="space-y-8">
+        <div class="flex gap-5">
+          <div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-on-secondary-container">phone</span>
+          </div>
+          <div>
+            <h2 class="font-headline font-bold text-on-surface mb-1">Phone</h2>
+            <a href="tel:+61740419400" class="text-primary hover:underline font-body">+61 7 4041 9400</a>
+            <p class="text-on-surface-variant text-xs font-body mt-1">Mon–Fri 8am–6pm AEST · Sat–Sun 8am–4pm AEST</p>
+          </div>
+        </div>
+
+        <div class="flex gap-5">
+          <div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-on-secondary-container">mail</span>
+          </div>
+          <div>
+            <h2 class="font-headline font-bold text-on-surface mb-1">Email</h2>
+            <a href="mailto:info@tropicwings.com.au" class="text-primary hover:underline font-body">info@tropicwings.com.au</a>
+            <p class="text-on-surface-variant text-xs font-body mt-1">We aim to respond within 2 business hours.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-5">
+          <div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-on-secondary-container">location_on</span>
+          </div>
+          <div>
+            <h2 class="font-headline font-bold text-on-surface mb-1">Address</h2>
+            <p class="font-body text-on-surface-variant">278 Hartley Street<br/>Cairns QLD 4870<br/>Australia</p>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-low rounded-xl p-6">
+          <p class="text-sm font-body text-on-surface-variant leading-relaxed">For urgent booking changes on the day of travel, please call us directly — email may not be monitored during driver operations.</p>
+        </div>
+      </div>
+
+      <!-- Contact form -->
+      <form id="contact-form" class="space-y-5" method="post" action="/contact">
+        <div>
+          <label for="contact-name" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2 font-label">Full Name</label>
+          <input id="contact-name" name="name" type="text" required autocomplete="name" placeholder="Jane Smith"
+            class="w-full bg-surface-container-high rounded-lg px-4 py-3 text-sm font-medium border-none focus:ring-2 focus:ring-primary outline-none" />
+        </div>
+
+        <div>
+          <label for="contact-email" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2 font-label">Email Address</label>
+          <input id="contact-email" name="email" type="email" required autocomplete="email" placeholder="jane.smith@example.com"
+            class="w-full bg-surface-container-high rounded-lg px-4 py-3 text-sm font-medium border-none focus:ring-2 focus:ring-primary outline-none" />
+        </div>
+
+        <div>
+          <label for="contact-booking" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2 font-label">Booking Reference <span class="normal-case font-normal tracking-normal text-outline">(optional)</span></label>
+          <input id="contact-booking" name="bookingRef" type="text" placeholder="e.g. TWT-12345"
+            class="w-full bg-surface-container-high rounded-lg px-4 py-3 text-sm font-medium border-none focus:ring-2 focus:ring-primary outline-none" />
+        </div>
+
+        <div>
+          <label for="contact-message" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2 font-label">Message</label>
+          <textarea id="contact-message" name="message" required rows="5" placeholder="How can we help?"
+            class="w-full bg-surface-container-high rounded-lg px-4 py-3 text-sm font-medium border-none resize-none focus:ring-2 focus:ring-primary outline-none"></textarea>
+        </div>
+
+        <button type="submit"
+          class="w-full action-pill-gradient text-on-primary py-4 rounded-full font-headline font-bold flex items-center justify-center gap-2 shadow-lg hover:scale-[1.02] transition-transform">
+          Send Message
+          <span class="material-symbols-outlined">send</span>
+        </button>
+      </form>
+
+    </div>
+  </div>
+</BaseLayout>

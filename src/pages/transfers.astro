@@ -3,14 +3,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TransferCard from '../components/TransferCard.astro';
 
 const departures = [
-  { departTime: "07:30", arriveTime: "08:45", departStop: "Cairns Airport", arriveStop: "Port Douglas", duration: "1h 15m", stops: "Non-stop", price: "$XX", badge: "First Departure", badgeStyle: "lime" as const },
-  { departTime: "09:30", arriveTime: "11:00", departStop: "Cairns Airport", arriveStop: "Port Douglas", duration: "1h 30m", stops: "1 Stop (Palm Cove)", price: "$XX" },
-  { departTime: "11:00", arriveTime: "12:15", departStop: "Cairns Airport", arriveStop: "Port Douglas", duration: "1h 15m", stops: "Non-stop", price: "$XX" },
-  { departTime: "13:00", arriveTime: "14:15", departStop: "Cairns Airport", arriveStop: "Port Douglas", duration: "1h 15m", stops: "Non-stop", price: "$XX", badge: "Popular", badgeStyle: "primary" as const },
-  { departTime: "15:00", arriveTime: "16:15", departStop: "Cairns Airport", arriveStop: "Port Douglas", duration: "1h 15m", stops: "Non-stop", price: "$XX" },
-  { departTime: "16:30", arriveTime: "18:00", departStop: "Cairns Airport", arriveStop: "Port Douglas", duration: "1h 30m", stops: "1 Stop (Palm Cove)", price: "$XX" },
-  { departTime: "18:00", arriveTime: "19:15", departStop: "Cairns Airport", arriveStop: "Port Douglas", duration: "1h 15m", stops: "Non-stop", price: "$XX" },
+  { departTime: "07:30", arriveTime: "08:45", departStop: "Cairns Airport", arriveStop: "Port Douglas", duration: "1h 15m", stops: "Non-stop", price: "Book now", badge: "First Departure", badgeStyle: "lime" as const, timeBucket: "morning", serviceType: "coach" },
+  { departTime: "09:30", arriveTime: "11:00", departStop: "Cairns Airport", arriveStop: "Port Douglas", duration: "1h 30m", stops: "1 Stop (Palm Cove)", price: "Book now", timeBucket: "morning", serviceType: "coach" },
+  { departTime: "11:00", arriveTime: "12:15", departStop: "Cairns Airport", arriveStop: "Port Douglas", duration: "1h 15m", stops: "Non-stop", price: "Book now", timeBucket: "morning", serviceType: "coach" },
+  { departTime: "13:00", arriveTime: "14:15", departStop: "Cairns Airport", arriveStop: "Port Douglas", duration: "1h 15m", stops: "Non-stop", price: "Book now", badge: "Popular", badgeStyle: "primary" as const, timeBucket: "afternoon", serviceType: "coach" },
+  { departTime: "15:00", arriveTime: "16:15", departStop: "Cairns Airport", arriveStop: "Port Douglas", duration: "1h 15m", stops: "Non-stop", price: "Book now", timeBucket: "afternoon", serviceType: "coach" },
+  { departTime: "16:30", arriveTime: "18:00", departStop: "Cairns Airport", arriveStop: "Port Douglas", duration: "1h 30m", stops: "1 Stop (Palm Cove)", price: "Book now", timeBucket: "afternoon", serviceType: "coach" },
+  { departTime: "18:00", arriveTime: "19:15", departStop: "Cairns Airport", arriveStop: "Port Douglas", duration: "1h 15m", stops: "Non-stop", price: "Book now", timeBucket: "evening", serviceType: "coach" },
 ];
+
+const PAGE_SIZE = 4;
 ---
 
 <BaseLayout
@@ -61,15 +63,15 @@ const departures = [
             <p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label">Time of Day</p>
             <div class="grid grid-cols-1 gap-2">
               <label class="flex items-center gap-3 p-3 rounded-lg bg-secondary-fixed/20 border-2 border-secondary cursor-pointer">
-                <input checked type="checkbox" class="w-5 h-5 rounded border-secondary text-secondary focus:ring-secondary"/>
+                <input id="filter-morning" data-filter="time" data-value="morning" data-default="true" checked type="checkbox" class="w-5 h-5 rounded border-secondary text-secondary focus:ring-secondary"/>
                 <span class="text-sm font-bold text-on-secondary-container">Morning (06:00–12:00)</span>
               </label>
               <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-container cursor-pointer">
-                <input type="checkbox" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary"/>
+                <input id="filter-afternoon" data-filter="time" data-value="afternoon" data-default="true" checked type="checkbox" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary"/>
                 <span class="text-sm font-medium">Afternoon (12:00–18:00)</span>
               </label>
               <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-container cursor-pointer">
-                <input type="checkbox" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary"/>
+                <input id="filter-evening" data-filter="time" data-value="evening" data-default="true" checked type="checkbox" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary"/>
                 <span class="text-sm font-medium">Evening (18:00+)</span>
               </label>
             </div>
@@ -83,19 +85,19 @@ const departures = [
                   <span class="material-symbols-outlined text-outline text-sm">directions_bus</span>
                   <span class="text-sm font-medium">Seat in Coach</span>
                 </div>
-                <input checked type="checkbox" class="w-5 h-5 rounded border-primary text-primary"/>
+                <input id="filter-coach" data-filter="service" data-value="coach" data-default="true" checked type="checkbox" class="w-5 h-5 rounded border-primary text-primary"/>
               </label>
               <label class="flex justify-between items-center p-3 rounded-lg hover:bg-surface-container cursor-pointer">
                 <div class="flex items-center gap-3">
                   <span class="material-symbols-outlined text-outline text-sm">electric_car</span>
                   <span class="text-sm font-medium">Private Transfer</span>
                 </div>
-                <input type="checkbox" class="w-5 h-5 rounded border-outline-variant text-primary"/>
+                <input id="filter-private" data-filter="service" data-value="private" type="checkbox" class="w-5 h-5 rounded border-outline-variant text-primary"/>
               </label>
             </div>
           </div>
 
-          <button class="w-full py-3 bg-surface-container-high text-on-surface-variant font-bold rounded-full hover:bg-surface-container-highest transition-all text-sm font-label">
+          <button id="clear-filters" class="w-full py-3 bg-surface-container-high text-on-surface-variant font-bold rounded-full hover:bg-surface-container-highest transition-all text-sm font-label">
             Clear All Filters
           </button>
         </div>
@@ -121,25 +123,40 @@ const departures = [
     <section class="col-span-12 lg:col-span-9 space-y-6">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 bg-surface-container-low rounded-xl mt-4">
         <p class="text-on-surface-variant text-sm font-body">
-          <span class="font-bold text-primary">{departures.length} departures</span> available — Cairns Airport → Port Douglas
+          <span id="results-count" class="font-bold text-primary">{departures.length}</span> <span id="results-label">departures</span> available — Cairns Airport → Port Douglas
         </p>
         <div class="flex items-center gap-4">
           <span class="text-xs font-bold text-outline uppercase tracking-wider font-label">Sort by:</span>
-          <select class="bg-transparent border-none text-sm font-bold text-primary focus:ring-0 cursor-pointer font-headline">
-            <option>Departure (Earliest)</option>
-            <option>Price (Lowest)</option>
+          <select id="sort-select" class="bg-transparent border-none text-sm font-bold text-primary focus:ring-0 cursor-pointer font-headline">
+            <option value="time">Departure (Earliest)</option>
+            <option value="stops">Non-stop First</option>
           </select>
         </div>
       </div>
 
-      <div class="space-y-5">
-        {departures.map((d) => (
-          <TransferCard {...d} />
+      <div id="departures-list" class="space-y-5">
+        {departures.map((d, i) => (
+          <div
+            data-time-bucket={d.timeBucket}
+            data-service-type={d.serviceType}
+            data-depart-time={d.departTime}
+            data-has-stop={d.stops !== 'Non-stop' ? 'true' : 'false'}
+            data-index={i}
+            class="departure-card"
+          >
+            <TransferCard {...d} />
+          </div>
         ))}
       </div>
 
-      <div class="flex justify-center pt-4">
-        <button class="flex items-center gap-3 px-12 py-4 bg-surface-container-high border-2 border-primary/10 text-primary font-extrabold rounded-full hover:bg-primary hover:text-on-primary transition-all duration-300 font-headline">
+      <div id="no-results" class="hidden text-center py-16 text-on-surface-variant font-body">
+        <span class="material-symbols-outlined text-4xl mb-4 block">search_off</span>
+        <p class="font-headline font-bold text-lg mb-2">No departures match your filters</p>
+        <p class="text-sm">Try adjusting the time of day or service type filters.</p>
+      </div>
+
+      <div id="show-more-wrapper" class="flex justify-center pt-4">
+        <button id="show-more" class="flex items-center gap-3 px-12 py-4 bg-surface-container-high border-2 border-primary/10 text-primary font-extrabold rounded-full hover:bg-primary hover:text-on-primary transition-all duration-300 font-headline">
           Show More Departures
           <span class="material-symbols-outlined">expand_more</span>
         </button>
@@ -147,4 +164,99 @@ const departures = [
     </section>
 
   </div>
+
+  <script define:vars={{ PAGE_SIZE }}>
+    (function () {
+      const list = document.getElementById('departures-list');
+      const cards = Array.from(list.querySelectorAll('.departure-card'));
+      const noResults = document.getElementById('no-results');
+      const showMoreBtn = document.getElementById('show-more');
+      const showMoreWrapper = document.getElementById('show-more-wrapper');
+      const countEl = document.getElementById('results-count');
+      const labelEl = document.getElementById('results-label');
+      const sortSelect = document.getElementById('sort-select');
+      const clearBtn = document.getElementById('clear-filters');
+
+      let visibleCount = PAGE_SIZE;
+
+      function getActiveTimeBuckets() {
+        return Array.from(document.querySelectorAll('[data-filter="time"]:checked'))
+          .map(el => el.dataset.value);
+      }
+
+      function getActiveServiceTypes() {
+        return Array.from(document.querySelectorAll('[data-filter="service"]:checked'))
+          .map(el => el.dataset.value);
+      }
+
+      function getSortOrder() {
+        return sortSelect.value;
+      }
+
+      function applyFiltersAndSort() {
+        const timeBuckets = getActiveTimeBuckets();
+        const serviceTypes = getActiveServiceTypes();
+        const sort = getSortOrder();
+
+        let matching = cards.filter(card => {
+          const timeMatch = timeBuckets.length === 0 || timeBuckets.includes(card.dataset.timeBucket);
+          const serviceMatch = serviceTypes.length === 0 || serviceTypes.includes(card.dataset.serviceType);
+          return timeMatch && serviceMatch;
+        });
+
+        if (sort === 'stops') {
+          matching = [
+            ...matching.filter(c => c.dataset.hasStop === 'false'),
+            ...matching.filter(c => c.dataset.hasStop === 'true'),
+          ];
+        } else {
+          matching.sort((a, b) => a.dataset.departTime.localeCompare(b.dataset.departTime));
+        }
+
+        // Reorder DOM
+        matching.forEach(card => list.appendChild(card));
+
+        // Hide all, show up to visibleCount of matching
+        cards.forEach(card => card.classList.add('hidden'));
+        const toShow = matching.slice(0, visibleCount);
+        toShow.forEach(card => card.classList.remove('hidden'));
+
+        const total = matching.length;
+        countEl.textContent = String(total);
+        labelEl.textContent = total === 1 ? 'departure' : 'departures';
+
+        noResults.classList.toggle('hidden', total > 0);
+
+        const hasMore = total > visibleCount;
+        showMoreWrapper.classList.toggle('hidden', !hasMore);
+      }
+
+      document.querySelectorAll('[data-filter]').forEach(input => {
+        input.addEventListener('change', () => {
+          visibleCount = PAGE_SIZE;
+          applyFiltersAndSort();
+        });
+      });
+
+      sortSelect.addEventListener('change', () => {
+        applyFiltersAndSort();
+      });
+
+      clearBtn.addEventListener('click', () => {
+        document.querySelectorAll('[data-filter]').forEach(input => {
+          input.checked = input.dataset.default === 'true';
+        });
+        visibleCount = PAGE_SIZE;
+        applyFiltersAndSort();
+      });
+
+      showMoreBtn.addEventListener('click', () => {
+        visibleCount += PAGE_SIZE;
+        applyFiltersAndSort();
+      });
+
+      applyFiltersAndSort();
+    })();
+  </script>
+
 </BaseLayout>
