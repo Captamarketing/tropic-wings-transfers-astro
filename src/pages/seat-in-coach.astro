@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { timetableCNS, timetablePD } from '../data/timetables';
 
 const schema = [
   {
@@ -35,28 +36,10 @@ const schema = [
   }
 ];
 
-const timetableCNS = [
-  { depart: "07:30", arrive: "08:45", type: "Non-stop", popular: false },
-  { depart: "09:30", arrive: "11:00", type: "Palm Cove stop", popular: false },
-  { depart: "11:00", arrive: "12:15", type: "Non-stop", popular: false },
-  { depart: "13:00", arrive: "14:15", type: "Non-stop", popular: true },
-  { depart: "15:00", arrive: "16:15", type: "Non-stop", popular: false },
-  { depart: "16:30", arrive: "18:00", type: "Palm Cove stop", popular: false },
-  { depart: "18:00", arrive: "19:15", type: "Non-stop", popular: false },
-];
-
-const timetablePD = [
-  { depart: "05:00", arrive: "06:15", type: "Non-stop", popular: false },
-  { depart: "07:00", arrive: "08:15", type: "Non-stop", popular: false },
-  { depart: "09:00", arrive: "10:30", type: "Palm Cove stop", popular: false },
-  { depart: "11:00", arrive: "12:15", type: "Non-stop", popular: false },
-  { depart: "13:30", arrive: "14:45", type: "Non-stop", popular: true },
-  { depart: "15:00", arrive: "16:15", type: "Non-stop", popular: false },
-];
 ---
 
 <BaseLayout
-  title="Seat in Coach — Cairns Airport to Port Douglas from $XX | Tropic Wings"
+  title="Seat in Coach — Cairns Airport to Port Douglas | Tropic Wings"
   description="Affordable scheduled coach transfers between Cairns Airport and Port Douglas with Tropic Wings. Multiple daily departures, airport meet & greet, luggage included. Book online."
   canonical="/seat-in-coach"
   schema={schema}
@@ -83,7 +66,7 @@ const timetablePD = [
       </h1>
       <p class="text-white/80 font-body text-lg max-w-xl mb-8">The smart, affordable way to travel between Cairns Airport and Port Douglas. Book a seat on our daily scheduled service — we handle everything from arrivals to your accommodation door.</p>
       <a href="/transfers" class="inline-flex items-center gap-3 action-pill-gradient text-on-primary px-10 py-4 rounded-full font-headline font-bold text-lg shadow-xl hover:scale-[1.02] transition-transform w-fit">
-        View Timetable &amp; Book — From $XX <span class="material-symbols-outlined">arrow_forward</span>
+        View Timetable &amp; Book <span class="material-symbols-outlined">arrow_forward</span>
       </a>
     </div>
   </header>
@@ -163,15 +146,15 @@ const timetablePD = [
           <div class="px-8 py-5 flex justify-between items-center">
             <p class="font-headline font-bold">Adult <span class="text-on-surface-variant font-body font-normal text-sm">(12+ years)</span></p>
             <div class="text-right">
-              <p class="text-2xl font-headline font-extrabold text-primary">$XX <span class="text-sm font-medium text-outline">AUD one way</span></p>
-              <p class="text-sm text-on-surface-variant font-body">$XX return</p>
+              <p class="text-lg font-headline font-extrabold text-primary">See booking <span class="text-sm font-medium text-outline">AUD one way</span></p>
+              <p class="text-sm text-on-surface-variant font-body">Return also available</p>
             </div>
           </div>
           <div class="px-8 py-5 flex justify-between items-center">
             <p class="font-headline font-bold">Child <span class="text-on-surface-variant font-body font-normal text-sm">(2–11 years)</span></p>
             <div class="text-right">
-              <p class="text-2xl font-headline font-extrabold text-primary">$XX <span class="text-sm font-medium text-outline">AUD one way</span></p>
-              <p class="text-sm text-on-surface-variant font-body">$XX return</p>
+              <p class="text-lg font-headline font-extrabold text-primary">Reduced fare <span class="text-sm font-medium text-outline">AUD one way</span></p>
+              <p class="text-sm text-on-surface-variant font-body">Return also available</p>
             </div>
           </div>
           <div class="px-8 py-5 flex justify-between items-center bg-surface-container-low">
