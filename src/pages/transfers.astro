@@ -63,15 +63,15 @@ const PAGE_SIZE = 4;
             <p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label">Time of Day</p>
             <div class="grid grid-cols-1 gap-2">
               <label class="flex items-center gap-3 p-3 rounded-lg bg-secondary-fixed/20 border-2 border-secondary cursor-pointer">
-                <input id="filter-morning" data-filter="time" data-value="morning" checked type="checkbox" class="w-5 h-5 rounded border-secondary text-secondary focus:ring-secondary"/>
+                <input id="filter-morning" data-filter="time" data-value="morning" data-default="true" checked type="checkbox" class="w-5 h-5 rounded border-secondary text-secondary focus:ring-secondary"/>
                 <span class="text-sm font-bold text-on-secondary-container">Morning (06:00–12:00)</span>
               </label>
               <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-container cursor-pointer">
-                <input id="filter-afternoon" data-filter="time" data-value="afternoon" checked type="checkbox" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary"/>
+                <input id="filter-afternoon" data-filter="time" data-value="afternoon" data-default="true" checked type="checkbox" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary"/>
                 <span class="text-sm font-medium">Afternoon (12:00–18:00)</span>
               </label>
               <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-container cursor-pointer">
-                <input id="filter-evening" data-filter="time" data-value="evening" checked type="checkbox" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary"/>
+                <input id="filter-evening" data-filter="time" data-value="evening" data-default="true" checked type="checkbox" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary"/>
                 <span class="text-sm font-medium">Evening (18:00+)</span>
               </label>
             </div>
@@ -85,7 +85,7 @@ const PAGE_SIZE = 4;
                   <span class="material-symbols-outlined text-outline text-sm">directions_bus</span>
                   <span class="text-sm font-medium">Seat in Coach</span>
                 </div>
-                <input id="filter-coach" data-filter="service" data-value="coach" checked type="checkbox" class="w-5 h-5 rounded border-primary text-primary"/>
+                <input id="filter-coach" data-filter="service" data-value="coach" data-default="true" checked type="checkbox" class="w-5 h-5 rounded border-primary text-primary"/>
               </label>
               <label class="flex justify-between items-center p-3 rounded-lg hover:bg-surface-container cursor-pointer">
                 <div class="flex items-center gap-3">
@@ -244,7 +244,7 @@ const PAGE_SIZE = 4;
 
       clearBtn.addEventListener('click', () => {
         document.querySelectorAll('[data-filter]').forEach(input => {
-          input.checked = true;
+          input.checked = input.dataset.default === 'true';
         });
         visibleCount = PAGE_SIZE;
         applyFiltersAndSort();

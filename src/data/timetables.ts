@@ -1,7 +1,9 @@
+export type TimetableServiceType = 'Non-stop' | 'Palm Cove stop';
+
 export interface TimetableRow {
   depart: string;
   arrive: string;
-  type: string;
+  type: TimetableServiceType;
   popular: boolean;
 }
 
