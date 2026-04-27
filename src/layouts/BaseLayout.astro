@@ -157,14 +157,20 @@ const canonicalURL = canonical
           <li><a href="https://tropicwings.com.au">Day Tours</a></li>
           <li><a href="/transfers" class="tw-nav-cta">Book Now</a></li>
         </ul>
-        <button class="tw-nav-mobile-toggle" id="tw-nav-toggle" aria-label="Menu">
+        <button
+          class="tw-nav-mobile-toggle"
+          id="tw-nav-toggle"
+          aria-label="Open menu"
+          aria-controls="tw-mobile-nav"
+          aria-expanded="false"
+        >
           <span></span><span></span><span></span>
         </button>
       </nav>
 
-      <div class="tw-mobile-overlay" id="tw-overlay"></div>
-      <div class="tw-mobile-nav" id="tw-mobile-nav">
-        <button class="tw-mobile-nav-close" id="tw-nav-close">&times;</button>
+      <div class="tw-mobile-overlay" id="tw-overlay" aria-hidden="true"></div>
+      <div class="tw-mobile-nav" id="tw-mobile-nav" role="dialog" aria-modal="true" aria-label="Site menu">
+        <button class="tw-mobile-nav-close" id="tw-nav-close" aria-label="Close menu">&times;</button>
         <a href="/transfers" class="tw-nav-cta">Book Now</a>
         <a href="/seat-in-coach">Seat in Coach</a>
         <a href="/private-transfer">Private Transfer</a>
@@ -175,18 +181,35 @@ const canonicalURL = canonical
       <!-- Spacer so content doesn't hide under fixed nav -->
       <div style="height:68px"></div>
 
-      <script is:inline>
-        (function() {
-          var toggle = document.getElementById('tw-nav-toggle');
-          var overlay = document.getElementById('tw-overlay');
-          var nav = document.getElementById('tw-mobile-nav');
-          var closeBtn = document.getElementById('tw-nav-close');
-          function open() { nav.classList.add('open'); overlay.classList.add('open'); }
-          function close() { nav.classList.remove('open'); overlay.classList.remove('open'); }
-          toggle && toggle.addEventListener('click', open);
-          closeBtn && closeBtn.addEventListener('click', close);
-          overlay && overlay.addEventListener('click', close);
-        })();
+      <script>
+        const toggle = document.getElementById('tw-nav-toggle');
+        const overlay = document.getElementById('tw-overlay');
+        const nav = document.getElementById('tw-mobile-nav');
+        const closeBtn = document.getElementById('tw-nav-close');
+        if (toggle && overlay && nav && closeBtn) {
+          let lastFocused: Element | null = null;
+          function openMenu() {
+            lastFocused = document.activeElement;
+            nav!.classList.add('open');
+            overlay!.classList.add('open');
+            toggle!.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+            closeBtn!.focus();
+          }
+          function closeMenu() {
+            nav!.classList.remove('open');
+            overlay!.classList.remove('open');
+            toggle!.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+            (lastFocused as HTMLElement | null)?.focus();
+          }
+          toggle.addEventListener('click', openMenu);
+          closeBtn.addEventListener('click', closeMenu);
+          overlay.addEventListener('click', closeMenu);
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav!.classList.contains('open')) closeMenu();
+          });
+        }
       </script>
     </slot>
 
