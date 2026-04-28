@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const BOOKING_URL = "https://app.respax.com/public/tw?site=TWAIRPORT&tourCode=AIRPORTCNPD";
+
 const schema = [
   {
     "@type": "WebSite",
@@ -53,7 +55,7 @@ const schema = [
     "description": "Scheduled shared coach transfer between Cairns Airport (CNS) and Port Douglas, Queensland. Multiple daily departures, airport meet and greet, air-conditioned modern coaches.",
     "provider": { "@id": "https://transfers.tropicwings.com.au/#organization" },
     "serviceType": "Airport Shuttle Transfer",
-    "offers": { "@type": "Offer", "priceCurrency": "AUD", "availability": "https://schema.org/InStock", "url": "https://transfers.tropicwings.com.au/transfers" }
+    "offers": { "@type": "Offer", "priceCurrency": "AUD", "availability": "https://schema.org/InStock", "url": BOOKING_URL }
   },
   {
     "@type": "Service",
@@ -118,7 +120,7 @@ const schema = [
         <p class="text-white/80 mt-4 text-lg font-body max-w-xl mx-auto">Reliable, comfortable, direct. The trusted transfer operated by Tropic Wings since 1981.</p>
       </div>
       <div class="flex flex-col sm:flex-row gap-4 justify-center mt-2">
-        <a href="https://app.respax.com/public/tw?site=TWAIRPORT&tourCode=AIRPORTCNPD" class="action-pill-gradient text-on-primary px-10 py-4 rounded-full font-headline font-bold text-xl flex items-center gap-3 shadow-xl shadow-primary/30 hover:scale-[1.02] transition-transform">
+        <a href={BOOKING_URL} class="action-pill-gradient text-on-primary px-10 py-4 rounded-full font-headline font-bold text-xl flex items-center gap-3 shadow-xl shadow-primary/30 hover:scale-[1.02] transition-transform">
           Book Now
           <span class="material-symbols-outlined">arrow_forward</span>
         </a>
@@ -279,7 +281,7 @@ const schema = [
             </div>
           </div>
           <div class="mt-10 flex gap-4">
-            <a href="https://app.respax.com/public/tw?site=TWAIRPORT&tourCode=AIRPORTCNPD" class="action-pill-gradient text-on-primary px-8 py-4 rounded-full font-headline font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+            <a href={BOOKING_URL} class="action-pill-gradient text-on-primary px-8 py-4 rounded-full font-headline font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
               Book Seat in Coach <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
             <a href="/private-transfer" class="px-8 py-4 rounded-full font-headline font-bold border-2 border-primary text-primary hover:bg-primary hover:text-on-primary transition-all">
@@ -329,7 +331,7 @@ const schema = [
       <h2 class="text-4xl md:text-5xl font-headline font-black tracking-tighter text-white mb-4">Ready to book your transfer?</h2>
       <p class="text-white/75 font-body text-lg mb-10">Seats fill fast in peak season — lock in yours now. Instant confirmation, easy cancellation.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="https://app.respax.com/public/tw?site=TWAIRPORT&tourCode=AIRPORTCNPD" class="bg-secondary-fixed text-on-secondary-fixed px-10 py-4 rounded-full font-headline font-bold text-lg hover:scale-[1.02] transition-transform shadow-xl">
+        <a href={BOOKING_URL} class="bg-secondary-fixed text-on-secondary-fixed px-10 py-4 rounded-full font-headline font-bold text-lg hover:scale-[1.02] transition-transform shadow-xl">
           Book Seat in Coach
         </a>
         <a href="/private-transfer" class="bg-white/10 border-2 border-white/30 text-white px-10 py-4 rounded-full font-headline font-bold text-lg hover:bg-white/20 transition-all">
