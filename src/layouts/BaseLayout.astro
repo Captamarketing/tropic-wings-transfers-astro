@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { BOOKING_URL } from '../constants/booking';
 
 export interface Props {
   title: string;
@@ -155,7 +156,7 @@ const canonicalURL = canonical
           <li><a href="/seat-in-coach">Seat in Coach</a></li>
           <li><a href="/private-transfer">Private Transfer</a></li>
           <li><a href="https://tropicwings.com.au">Day Tours</a></li>
-          <li><a href="/transfers" class="tw-nav-cta">Book Now</a></li>
+          <li><a href={BOOKING_URL} class="tw-nav-cta">Book Now</a></li>
         </ul>
         <button
           class="tw-nav-mobile-toggle"
@@ -169,9 +170,9 @@ const canonicalURL = canonical
       </nav>
 
       <div class="tw-mobile-overlay" id="tw-overlay" aria-hidden="true"></div>
-      <div class="tw-mobile-nav" id="tw-mobile-nav" role="dialog" aria-modal="true" aria-label="Site menu">
+      <div class="tw-mobile-nav" id="tw-mobile-nav" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true" inert>
         <button class="tw-mobile-nav-close" id="tw-nav-close" aria-label="Close menu">&times;</button>
-        <a href="/transfers" class="tw-nav-cta">Book Now</a>
+        <a href={BOOKING_URL} class="tw-nav-cta">Book Now</a>
         <a href="/seat-in-coach">Seat in Coach</a>
         <a href="/private-transfer">Private Transfer</a>
         <a href="https://tropicwings.com.au">Day Tours</a>
@@ -190,6 +191,8 @@ const canonicalURL = canonical
           let lastFocused: Element | null = null;
           function openMenu() {
             lastFocused = document.activeElement;
+            nav!.removeAttribute('inert');
+            nav!.setAttribute('aria-hidden', 'false');
             nav!.classList.add('open');
             overlay!.classList.add('open');
             toggle!.setAttribute('aria-expanded', 'true');
@@ -199,6 +202,8 @@ const canonicalURL = canonical
           function closeMenu() {
             nav!.classList.remove('open');
             overlay!.classList.remove('open');
+            nav!.setAttribute('aria-hidden', 'true');
+            nav!.setAttribute('inert', '');
             toggle!.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
             (lastFocused as HTMLElement | null)?.focus();
