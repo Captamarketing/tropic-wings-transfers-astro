@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { timetableCNS, timetablePD } from '../data/timetables';
+import { BOOKING_URL } from '../constants/booking';
 
 const schema = [
   {
@@ -10,7 +11,7 @@ const schema = [
     "provider": { "@type": "TransportationCompany", "name": "Tropic Wings Transfers", "url": "https://transfers.tropicwings.com.au" },
     "serviceType": "Scheduled Airport Shuttle",
     "areaServed": { "@type": "Place", "name": "Cairns Airport to Port Douglas, Queensland, Australia" },
-    "offers": { "@type": "Offer", "priceCurrency": "AUD", "availability": "https://schema.org/InStock", "url": "https://transfers.tropicwings.com.au/transfers" },
+    "offers": { "@type": "Offer", "priceCurrency": "AUD", "availability": "https://schema.org/InStock", "url": BOOKING_URL },
     "additionalProperty": [
       { "@type": "PropertyValue", "name": "Route", "value": "Cairns Airport (CNS) to Port Douglas via Captain Cook Highway" },
       { "@type": "PropertyValue", "name": "Distance", "value": "Approximately 70km" },
@@ -49,10 +50,10 @@ const schema = [
   <header class="relative h-[500px] overflow-hidden hero-clip">
     <div class="absolute inset-0">
       <img class="w-full h-full object-cover"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Volvo_9700_coach_Daltrans.jpg/1280px-Volvo_9700_coach_Daltrans.jpg"
+        src="https://tropicwings.com.au/wp-content/uploads/2024/09/4.jpg"
         alt="Modern air-conditioned coach for Cairns Airport to Port Douglas transfers — Tropic Wings"
       />
-      <div class="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/30 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/10"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-8 h-full flex flex-col justify-center">
       <nav class="text-white/60 text-xs font-label mb-6 flex items-center gap-2">
@@ -60,12 +61,11 @@ const schema = [
         <span class="material-symbols-outlined text-sm">chevron_right</span>
         <span class="text-white">Seat in Coach</span>
       </nav>
-      <span class="inline-block bg-secondary-fixed text-on-secondary-fixed text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-widest font-label mb-5">Most Popular · Daily Departures</span>
-      <h1 class="text-5xl md:text-6xl font-headline font-extrabold text-white leading-tight tracking-tighter mb-4">
+      <h1 class="text-5xl md:text-6xl font-headline font-extrabold text-white leading-tight tracking-normal mb-4">
         Seat in Coach<br/><span class="text-white/70 text-3xl md:text-4xl">Cairns Airport to Port Douglas</span>
       </h1>
       <p class="text-white/80 font-body text-lg max-w-xl mb-8">The smart, affordable way to travel between Cairns Airport and Port Douglas. Book a seat on our daily scheduled service — we handle everything from arrivals to your accommodation door.</p>
-      <a href="/transfers" class="inline-flex items-center gap-3 action-pill-gradient text-on-primary px-10 py-4 rounded-full font-headline font-bold text-lg shadow-xl hover:scale-[1.02] transition-transform w-fit">
+      <a href={BOOKING_URL} class="inline-flex items-center gap-3 action-pill-gradient text-on-primary px-10 py-4 rounded-full font-headline font-bold text-lg shadow-xl hover:scale-[1.02] transition-transform w-fit">
         View Timetable &amp; Book <span class="material-symbols-outlined">arrow_forward</span>
       </a>
     </div>
@@ -165,7 +165,7 @@ const schema = [
       </div>
       <p class="text-center text-on-surface-variant text-sm font-body mt-6">All fares include luggage allowance (1 suitcase + 1 carry-on) and airport meet &amp; greet.</p>
       <div class="text-center mt-8">
-        <a href="/transfers" class="inline-flex items-center gap-3 action-pill-gradient text-on-primary px-12 py-4 rounded-full font-headline font-bold text-lg shadow-xl hover:scale-[1.02] transition-transform">
+        <a href={BOOKING_URL} class="inline-flex items-center gap-3 action-pill-gradient text-on-primary px-12 py-4 rounded-full font-headline font-bold text-lg shadow-xl hover:scale-[1.02] transition-transform">
           Book Your Seat <span class="material-symbols-outlined">arrow_forward</span>
         </a>
       </div>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BookingWidget from '../components/BookingWidget.astro';
+import { BOOKING_URL } from '../constants/booking';
+import HeroLocationPicker from '../components/HeroLocationPicker.astro';
 
 const schema = [
   {
@@ -54,7 +55,7 @@ const schema = [
     "description": "Scheduled shared coach transfer between Cairns Airport (CNS) and Port Douglas, Queensland. Multiple daily departures, airport meet and greet, air-conditioned modern coaches.",
     "provider": { "@id": "https://transfers.tropicwings.com.au/#organization" },
     "serviceType": "Airport Shuttle Transfer",
-    "offers": { "@type": "Offer", "priceCurrency": "AUD", "availability": "https://schema.org/InStock", "url": "https://transfers.tropicwings.com.au/transfers" }
+    "offers": { "@type": "Offer", "priceCurrency": "AUD", "availability": "https://schema.org/InStock", "url": BOOKING_URL }
   },
   {
     "@type": "Service",
@@ -108,28 +109,30 @@ const schema = [
         src="https://tropicwings.com.au/wp-content/uploads/2022/11/Lg_160419__1589-scaled.jpg"
         alt="Cairns Airport to Port Douglas transfer — Tropic Wings"
       />
-      <div class="absolute inset-0 bg-gradient-to-br from-black/50 via-black/20 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/10"></div>
     </div>
     <div class="relative z-10 w-full max-w-5xl px-6">
       <div class="mb-8 text-center">
         <span class="inline-block bg-secondary-fixed text-on-secondary-fixed text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-widest font-label mb-4">Daily Departures</span>
         <h1 class="text-5xl md:text-7xl font-headline font-extrabold text-white leading-tight tracking-tighter drop-shadow-lg">
-          Cairns Airport<br/>to Port Douglas.
+          Airport and FNQ transfers<br/>you can trust.
         </h1>
         <p class="text-white/80 mt-4 text-lg font-body max-w-xl mx-auto">Reliable, comfortable, direct. The trusted transfer operated by Tropic Wings since 1981.</p>
       </div>
-      <BookingWidget />
+      <div class="mt-6">
+        <HeroLocationPicker />
+      </div>
     </div>
   </header>
 
-  <!-- TRUST BAR -->
-  <div class="bg-primary text-on-primary py-5 px-8">
-    <div class="max-w-7xl mx-auto flex flex-wrap justify-center gap-x-12 gap-y-3 font-label text-sm font-semibold tracking-wide">
-      <span class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary-fixed text-base">eco</span>Ecocertified 20+ Years</span>
-      <span class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary-fixed text-base">flight</span>Direct Cairns Airport Service</span>
-      <span class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary-fixed text-base">history</span>Est. 1981 — Cairns' Most Trusted</span>
-      <span class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary-fixed text-base">electric_bolt</span>Australia's First Electric Tour Fleet</span>
-      <span class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary-fixed text-base">schedule</span>Multiple Daily Departures</span>
+  <!-- TRUST BAR — desktop only -->
+  <div class="hidden md:block bg-primary text-on-primary py-5 overflow-x-auto">
+    <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-3 font-label text-sm font-semibold tracking-wide px-8">
+      <span class="flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true" class="material-symbols-outlined text-secondary-fixed text-base">eco</span>Ecocertified 20+ Years</span>
+      <span class="flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true" class="material-symbols-outlined text-secondary-fixed text-base">flight</span>Direct Cairns Airport Service</span>
+      <span class="flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true" class="material-symbols-outlined text-secondary-fixed text-base">history</span>Est. 1981 — Cairns' Most Trusted</span>
+      <span class="flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true" class="material-symbols-outlined text-secondary-fixed text-base">electric_bolt</span>Australia's First Electric Tour Fleet</span>
+      <span class="flex items-center gap-2 whitespace-nowrap"><span aria-hidden="true" class="material-symbols-outlined text-secondary-fixed text-base">schedule</span>Multiple Daily Departures</span>
     </div>
   </div>
 
@@ -138,7 +141,7 @@ const schema = [
     <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
       <div class="max-w-2xl">
         <span class="text-primary font-headline font-extrabold uppercase tracking-widest text-sm mb-4 block">Cairns ↔ Port Douglas</span>
-        <h2 class="text-5xl md:text-6xl font-headline font-black tracking-tighter text-on-surface leading-tight">Where the jungle meets the sea.</h2>
+        <h2 class="text-5xl md:text-6xl font-headline font-black tracking-tighter text-on-surface leading-tight">Professional drivers, modern, clean and tidy fleet.</h2>
       </div>
       <p class="text-on-surface-variant max-w-sm font-body text-lg">Direct, daily transfers along one of Australia's most spectacular coastal drives — choose the experience that suits you.</p>
     </div>
@@ -177,11 +180,7 @@ const schema = [
       <div class="col-span-12 md:col-span-4 relative group overflow-hidden rounded-xl bg-surface-container-low">
         <img class="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-110"
           src="https://tropicwings.com.au/wp-content/uploads/2022/08/Tropic-Wings-Mossman-Port-Douglas.jpg"
-<<<<<<< HEAD
-          alt="Four Mile Beach Port Douglas Queensland"
-=======
           alt="Mossman Gorge and Port Douglas region, Far North Queensland"
->>>>>>> origin/main
         />
         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
         <div class="absolute bottom-8 left-8 right-8 text-white">
@@ -231,7 +230,7 @@ const schema = [
         <div class="relative">
           <div class="absolute -top-12 -left-12 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
           <img
-            class="relative z-10 rounded-xl shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500 w-full object-cover h-96"
+            class="relative z-10 rounded-xl shadow-2xl w-full object-cover h-96"
             src="https://tropicwings.com.au/wp-content/uploads/2026/04/Tropic-Wings-bus-Interior-scaled.png"
             alt="Interior of a modern Tropic Wings air-conditioned coach"
           />
@@ -245,7 +244,7 @@ const schema = [
         </div>
         <div>
           <span class="text-primary font-headline font-extrabold uppercase tracking-widest text-sm mb-4 block">The Tropic Wings Standard</span>
-          <h2 class="text-4xl md:text-5xl font-headline font-black tracking-tighter text-on-surface mb-12">The transfer you can actually count on.</h2>
+          <h2 class="text-4xl md:text-5xl font-headline font-black tracking-tighter text-on-surface mb-12">Airport and FNQ transfers you can trust.</h2>
           <div class="space-y-10">
             <div class="flex gap-6">
               <div class="w-14 h-14 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
@@ -276,7 +275,7 @@ const schema = [
             </div>
           </div>
           <div class="mt-10 flex gap-4">
-            <a href="/transfers" class="action-pill-gradient text-on-primary px-8 py-4 rounded-full font-headline font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+            <a href={BOOKING_URL} class="action-pill-gradient text-on-primary px-8 py-4 rounded-full font-headline font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
               Book Seat in Coach <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
             <a href="/private-transfer" class="px-8 py-4 rounded-full font-headline font-bold border-2 border-primary text-primary hover:bg-primary hover:text-on-primary transition-all">
@@ -326,7 +325,7 @@ const schema = [
       <h2 class="text-4xl md:text-5xl font-headline font-black tracking-tighter text-white mb-4">Ready to book your transfer?</h2>
       <p class="text-white/75 font-body text-lg mb-10">Seats fill fast in peak season — lock in yours now. Instant confirmation, easy cancellation.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/transfers" class="bg-secondary-fixed text-on-secondary-fixed px-10 py-4 rounded-full font-headline font-bold text-lg hover:scale-[1.02] transition-transform shadow-xl">
+        <a href={BOOKING_URL} class="bg-secondary-fixed text-on-secondary-fixed px-10 py-4 rounded-full font-headline font-bold text-lg hover:scale-[1.02] transition-transform shadow-xl">
           Book Seat in Coach
         </a>
         <a href="/private-transfer" class="bg-white/10 border-2 border-white/30 text-white px-10 py-4 rounded-full font-headline font-bold text-lg hover:bg-white/20 transition-all">
