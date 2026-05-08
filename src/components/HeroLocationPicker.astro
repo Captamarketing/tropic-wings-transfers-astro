@@ -1,0 +1,88 @@
+---
+import { BOOKING_URL, BOOKING_URL_RETURN } from '../constants/booking';
+---
+
+<div class="w-full max-w-2xl mx-auto">
+  <div class="bg-white rounded-2xl shadow-2xl flex flex-col sm:flex-row items-stretch sm:items-center overflow-hidden">
+
+    <!-- Pick-up -->
+    <div class="flex-1 px-5 py-4 sm:py-3 flex items-center gap-3 border-b sm:border-b-0 sm:border-r border-gray-100">
+      <span class="material-symbols-outlined text-primary text-xl shrink-0" style="font-variation-settings:'FILL' 1;">flight_land</span>
+      <div class="flex flex-col min-w-0">
+        <span class="text-[9px] font-black uppercase tracking-[0.18em] text-gray-400 font-label leading-none mb-1">Pick-up</span>
+        <select
+          id="lp-from"
+          class="bg-transparent border-none p-0 focus:ring-0 text-sm font-bold text-on-surface font-headline appearance-none w-full cursor-pointer"
+        >
+          <option value="cns">Cairns Airport (CNS)</option>
+          <option value="pd">Port Douglas</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Swap button -->
+    <button
+      id="lp-swap"
+      type="button"
+      aria-label="Swap pick-up and drop-off"
+      class="hidden sm:flex self-center shrink-0 w-9 h-9 rounded-full border-2 border-gray-200 items-center justify-center hover:border-primary hover:text-primary text-gray-400 transition-all mx-1"
+    >
+      <span class="material-symbols-outlined text-base">swap_horiz</span>
+    </button>
+
+    <!-- Drop-off -->
+    <div class="flex-1 px-5 py-4 sm:py-3 flex items-center gap-3 border-b sm:border-b-0 border-gray-100">
+      <span class="material-symbols-outlined text-primary text-xl shrink-0" style="font-variation-settings:'FILL' 1;">location_on</span>
+      <div class="flex flex-col min-w-0">
+        <span class="text-[9px] font-black uppercase tracking-[0.18em] text-gray-400 font-label leading-none mb-1">Drop-off</span>
+        <select
+          id="lp-to"
+          class="bg-transparent border-none p-0 focus:ring-0 text-sm font-bold text-on-surface font-headline appearance-none w-full cursor-pointer"
+        >
+          <option value="pd">Port Douglas</option>
+          <option value="cns">Cairns Airport (CNS)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Find transfers button -->
+    <a
+      id="lp-cta"
+      href={BOOKING_URL}
+      class="action-pill-gradient text-white font-headline font-bold text-sm px-6 py-5 sm:py-0 sm:self-stretch flex items-center justify-center gap-2 whitespace-nowrap hover:opacity-90 transition-opacity sm:rounded-r-2xl sm:rounded-l-none rounded-b-2xl sm:rounded-b-none"
+    >
+      Find transfers
+      <span class="material-symbols-outlined text-base">arrow_forward</span>
+    </a>
+
+  </div>
+</div>
+
+<script define:vars={{ BOOKING_URL, BOOKING_URL_RETURN }}>
+  const fromSel = document.getElementById('lp-from');
+  const toSel   = document.getElementById('lp-to');
+  const cta     = document.getElementById('lp-cta');
+  const swapBtn = document.getElementById('lp-swap');
+
+  function updateCta() {
+    const from = fromSel.value;
+    cta.href = from === 'cns' ? BOOKING_URL : BOOKING_URL_RETURN;
+  }
+
+  function syncSelects(changedEl, otherEl) {
+    if (changedEl.value === otherEl.value) {
+      otherEl.value = changedEl.value === 'cns' ? 'pd' : 'cns';
+    }
+    updateCta();
+  }
+
+  fromSel.addEventListener('change', () => syncSelects(fromSel, toSel));
+  toSel.addEventListener('change',   () => syncSelects(toSel, fromSel));
+
+  swapBtn.addEventListener('click', () => {
+    const tmp = fromSel.value;
+    fromSel.value = toSel.value;
+    toSel.value = tmp;
+    updateCta();
+  });
+</script>
