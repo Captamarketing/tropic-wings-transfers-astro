@@ -1,5 +1,18 @@
-export const BOOKING_URL = "https://app.respax.com/public/tw?site=TWAIRPORT&tourCode=AIRPORTCNPD";
+// Base Respax URL format:
+// https://app.respax.com/public/tw/tourinformation/{TOUR_CODE}?site=TWAIRPORT&categoryId=428
 
-// Port Douglas → Cairns Airport return transfer
-// TODO: replace tourCode with the correct Respax product code for the PD→CNS direction
-export const BOOKING_URL_RETURN = "https://app.respax.com/public/tw?site=TWAIRPORT&tourCode=AIRPORTPDCN";
+const BASE = "https://app.respax.com/public/tw/tourinformation";
+const PARAMS = "?site=TWAIRPORT&categoryId=428";
+
+// All available transfer routes keyed as "{from}-{to}"
+export const RESPAX_ROUTES: Record<string, string> = {
+  "cns-pd":  `${BASE}/TAPPD${PARAMS}`,  // Cairns Airport → Port Douglas
+  "cns-pc":  `${BASE}/TAPPC${PARAMS}`,  // Cairns Airport → Palm Cove
+  "cns-cn":  `${BASE}/TAPCN${PARAMS}`,  // Cairns Airport → Cairns Hotels
+  "pd-cns":  `${BASE}/ATPDAP${PARAMS}`, // Port Douglas → Cairns Airport
+  "pc-cns":  `${BASE}/ATPCAP${PARAMS}`, // Palm Cove → Cairns Airport
+  "cn-cns":  `${BASE}/ATCNAP${PARAMS}`, // Cairns Hotels → Cairns Airport
+};
+
+// Default booking URL (Cairns Airport → Port Douglas, most common route)
+export const BOOKING_URL = RESPAX_ROUTES["cns-pd"];
